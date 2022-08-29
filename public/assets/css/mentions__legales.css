@@ -1,0 +1,28 @@
+.main__container {
+    margin-top: 7rem ;
+    margin-bottom: 7rem;
+}
+
+.example-wrapper {
+    margin: 1em auto;
+    max-width: 800px;
+    width: 95%;
+}
+
+.example-wrapper h2 {
+    font-size: 2rem;
+    padding-bottom: 2rem;
+}
+
+.legal__container {
+    padding-bottom: 2rem;
+}
+
+.legal__container__presentation{
+
+    padding-bottom: 1.1rem;
+}
+
+.legal__container__presentation strong {
+    font-weight: 900;
+}

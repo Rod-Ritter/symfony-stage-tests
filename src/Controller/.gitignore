@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
+class ContactController extends AbstractController
+{
+    #[Route('/contact', name: 'app_contact')]
+    public function contact(Request $request)
+    {
+        $formulaire = $this->createFormBuilder()
+        ->add('Prenom', TextType::class,
+            ['attr' => ['placeholder' => 'Votre Prénom *',
+            'class' => 'formCssInput']])
+        
+        ->add('Nom', TextType::class,
+            ['attr' => ['placeholder' => 'Votre Nom *',
+            'class' => 'formCssInput']])
+        ->add('Entreprise', TextType::class,
+            ['attr' => ['placeholder' => 'Votre Entreprise *',
+            'class' => 'formCssInput']])
+        ->add('Email', EmailType::class,
+            ['attr' => ['placeholder' => 'Votre Email *',
+            'class' => 'formCssInput']])
+        ->add('Telephone', TelType::class,
+            ['attr' => ['placeholder' => 'Votre Numéro *',
+             'class' => 'formCssInput']])
+        ->add('Choix', ChoiceType::class, [
+                'choices' => [
+                    'Main Statuses' => [
+                        'Oui' => 'stock_yes',
+                        'Non' => 'stock_no',
+                    ],
+                    'Out of Stock Statuses' => [
+                        'Machin' => 'stock_backordered',
+                        'Truc' => 'stock_discontinued',
+                    ],
+                ],
+                
+            ])
+        ->add('Message', TextareaType::class,
+            ['attr' => ['placeholder' => 'Votre Message *',
+            'class' => 'formCssMessage']])
+        ->add('Envoyer', SubmitType::class,
+        ['attr' => ['class' => 'formCssSend']])
+
+        ->getForm();
+
+        ($formulaire->handleRequest($request));
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()){
+            dd($formulaire->getData());
+        }
+        
+
+        return $this->render('contact/index.html.twig', [
+            'controller_name' => 'ContactController',
+            'frmContact' => $formulaire->createView()
+        ]);
+    }
+}

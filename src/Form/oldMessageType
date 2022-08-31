@@ -19,19 +19,26 @@ class MessagesType extends AbstractType
     {
         $builder
         ->add('nom', TextType::class,
-        ['attr' => ['placeholder' => ' Votre Nom *',]])
+        ['label' => 'Nom :','attr' => ['placeholder' => ' Votre Nom *',
+        'class' => 'formCssInput']])
         ->add('prenom', TextType::class,
-        ['attr' => ['placeholder' => ' Votre Prénom *',]])
+        ['label' => 'Prénom :','attr' => ['placeholder' => ' Votre Prénom *',
+        'class' => 'formCssInput']])
         ->add('Email', EmailType::class,
-        ['attr' => ['placeholder' => ' Votre Email *',]])
+        ['label' => 'Email :','attr' => ['placeholder' => ' Votre Email *',
+        'class' => 'formCssInput']])
         ->add('entreprise', TextType::class,
-        ['attr' => ['placeholder' => ' Votre Entreprise *',]])
+        ['label' => 'Entreprise :','attr' => ['placeholder' => ' Votre Entreprise *',
+        'class' => 'formCssInput']])
         ->add('telephone', TelType::class,
-        ['attr' => ['placeholder' => ' Votre Numéro *',]])
+        ['label' => 'Téléphone :','attr' => ['placeholder' => ' Votre Numéro *',
+         'class' => 'formCssInput']])
         ->add('Message', TextareaType::class,
-        ['attr' => ['placeholder' => 'Votre Message *',]])
-        ->add('Envoyer', SubmitType::class);
-    
+        ['label' => ' Message :','attr' => ['placeholder' => 'Votre Message *',
+        'class' => 'formCssMessage']])
+        ->add('Envoyer', SubmitType::class,
+        ['label' => 'Envoyer :','attr' => ['class' => 'formCssSend']])
+    ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
